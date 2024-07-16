@@ -9,7 +9,31 @@
     font-family: "Jost";
   }
   body {
-    background-color: #e2d3f5;
+    background-color: #e6effd;
     overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .text-1e2749{
+    color: #1e2749;
+  }
+  .bg-c2d9ff{
+    background-color: #c2d9ff;
+  }
+  .bg-3a4d93{
+    background-color: #3a4d93;
+  }
+
+  .input-box{
+    @apply w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none;
+  }
+
+  .btn-primary{
+    @apply w-full text-sm bg-primary text-white p-2 rounded my-1;
+  }
+  .btn-primary:hover{
+    text-shadow: 600;
+    background-color: #3a4d93;
   }
 }
