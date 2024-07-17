@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar";
 import Password from "../../components/Input/Password";
 import { validateEmail } from "../../utils/helper";
 
@@ -13,12 +13,13 @@ const Login = () => {
     e.preventDefault();
 
     if (!validateEmail(email)) {
-      setError("Please enter a valid email address!");
+      setError("Please enter a valid email address.");
       return;
     }
 
     if (!password) {
-      setError("Please enter the password!")
+      setError("Please enter the password.")
+      return;
     }
 
     setError("")
@@ -33,7 +34,7 @@ const Login = () => {
       <div className="flex items-center justify-center mt-28">
         <div className="w-96 border rounded px-7 bg-c2d9ff py-10">
           <form onSubmit={handleLogin}>
-            <h4 className="text-2xl mb-7">Login</h4>
+            <h4 className="text-2xl mb-7">Log In</h4>
 
             <input
               type="text"
@@ -51,7 +52,7 @@ const Login = () => {
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
 
             <button type="submit" className="btn-primary">
-              Login
+              Log In
             </button>
 
             <p className="text-sm text-center mt-4">
