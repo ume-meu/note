@@ -17,6 +17,12 @@
 ```npm install react-icons```
 ```npm install react-modal```
 
+#### 3. Set up the Backend:
+- ... (not need):
+```npm init```
+- ...:
+```npm install express mongoose jsonwebtoken dotenv cors nodemon```
+
 
 ## Reference:
 [Build a Full Stack Notes App using MERN | MongoDB, Express, React JS, Node JS](https://www.youtube.com/watch?v=Rgvec9UA2_I)
