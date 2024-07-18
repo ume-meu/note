@@ -6,8 +6,7 @@ import { MdAdd } from "react-icons/md";
 import AddEditNotes from "./AddEditNotes";
 
 const Home = () => {
-
-  const [ openAddEditModal, setOpenAddEditModal ] = useState({
+  const [openAddEditModal, setOpenAddEditModal] = useState({
     isShown: false,
     type: "add",
     data: null,
@@ -52,7 +51,13 @@ const Home = () => {
         contentLabel=""
         className="w-[40%] bg-white rounded-md mx-auto mt-14 p-5 overflow-scroll"
       >
-        <AddEditNotes />
+        <AddEditNotes
+        type={openAddEditModal.type}
+          noteData={openAddEditModal.data}
+          onclose={() => {
+            setOpenAddEditModal({ isShown: false, type: "add", data: null });
+          }}
+        />
       </Modal>
     </>
   );
