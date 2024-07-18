@@ -15,4 +15,9 @@
 - Run: 
 ```npm install react-router-dom```
 ```npm install react-icons```
+```npm install react-modal```
+
+
+## Reference:
+[Build a Full Stack Notes App using MERN | MongoDB, Express, React JS, Node JS](https://www.youtube.com/watch?v=Rgvec9UA2_I)
 

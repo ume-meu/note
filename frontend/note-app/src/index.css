@@ -43,4 +43,8 @@
   .icon-btn:hover{
     @apply text-primary;
   }
+
+  .input-label{
+    @apply text-xs text-slate-400;
+  }
 }
