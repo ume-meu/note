@@ -36,4 +36,11 @@
     text-shadow: 600;
     background-color: #3a4d93;
   }
+  
+  .icon-btn{
+    @apply text-xl text-slate-300 cursor-pointer;
+  }
+  .icon-btn:hover{
+    @apply text-primary;
+  }
 }
