@@ -11,3 +11,5 @@ Complete these tasks:
     Example: #CodingIsFun, #Tech_Enthusiast, #🚀
 <br>
 - [ ] Add comment for each function
+<br>
+- [ ] Delete all-note button, function
