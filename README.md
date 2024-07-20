@@ -8,20 +8,23 @@
 #### 2. Set up the Frontend:
 - Creating a new Vite project (Framework: React; Variant: JavaScript): 
 ```npm create vite@latest note-app```
-- Now run:
+- Now run to install:
 ```cd note-app```
 ```npm install```
-```npm run dev```
-- Run: 
 ```npm install react-router-dom```
 ```npm install react-icons```
 ```npm install react-modal```
+```npm install axios```
+- Run Frontend:
+```npm run dev```
 
 #### 3. Set up the Backend:
 - ... (not need):
 ```npm init```
 - ...:
 ```npm install express mongoose jsonwebtoken dotenv cors nodemon```
+- Run Backend (Server):
+```npm start```
 
 
 ## Reference:
