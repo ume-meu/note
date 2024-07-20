@@ -15,6 +15,7 @@
 ```npm install react-icons```
 ```npm install react-modal```
 ```npm install axios```
+```npm install moment```
 - Run Frontend:
 ```npm run dev```
 
