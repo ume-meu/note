@@ -6,6 +6,7 @@ import { MdAdd } from "react-icons/md";
 import AddEditNotes from "./AddEditNotes";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
+import Toast from "../../components/ToastMessage/Toast";
 
 const Home = () => {
   const [openAddEditModal, setOpenAddEditModal] = useState({
@@ -14,9 +15,34 @@ const Home = () => {
     data: null,
   });
 
+  const [showToastMsg, setShowToastMsg] = useState({
+    isShown: false,
+    type: "add",
+    data: null,
+  });
+
   const [allNotes, setAllNotes] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
   const navigate = useNavigate();
+
+  const handleEdit = (noteDetails) => {
+    setOpenAddEditModal({ isShown: true, data: noteDetails, type: "edit" });
+  };
+
+  const showToastMessage = (message, type) => {
+    setShowToastMsg({
+      isShown: true,
+      message,
+      type,
+    });
+  };
+
+  const handleCloseToast = () => {
+    setShowToastMsg({
+      isShown: false,
+      message: "",
+    });
+  };
 
   // Get User Info
   const getUserInfo = async () => {
@@ -44,7 +70,7 @@ const Home = () => {
     } catch (error) {
       console.log("An unexpected error occurred. Please try again.");
     }
-  }
+  };
 
   useEffect(() => {
     getAllNotes();
@@ -54,22 +80,22 @@ const Home = () => {
 
   return (
     <>
-      <Navbar userInfo={userInfo}/>
+      <Navbar userInfo={userInfo} />
 
       <div className="container mx-auto">
         <div className="grid grid-cols-3 gap-4 mt-8">
           {allNotes.map((item, index) => (
-          <NoteCard
-          key={item._id}
-            title={item.title}
-            date={item.createdOn}
-            content={item.content}
-            tags={item.tags}
-            isPinned={item.isPinned}
-            onEdit={() => {}}
-            onDelete={() => {}}
-            onPinNote={() => {}}
-          />
+            <NoteCard
+              key={item._id}
+              title={item.title}
+              date={item.createdOn}
+              content={item.content}
+              tags={item.tags}
+              isPinned={item.isPinned}
+              onEdit={() => handleEdit(item)}
+              onDelete={() => {}}
+              onPinNote={() => {}}
+            />
           ))}
         </div>
       </div>
@@ -95,13 +121,22 @@ const Home = () => {
         className="w-[40%] bg-white rounded-md mx-auto mt-14 p-5 overflow-scroll"
       >
         <AddEditNotes
-        type={openAddEditModal.type}
+          type={openAddEditModal.type}
           noteData={openAddEditModal.data}
           onclose={() => {
             setOpenAddEditModal({ isShown: false, type: "add", data: null });
           }}
+          getAllNotes={getAllNotes}
+          showToastMessage={showToastMessage}
         />
       </Modal>
+
+      <Toast
+        isShown={showToastMsg.isShown}
+        message={showToastMsg.message}
+        type={showToastMsg.type}
+        onClose={handleCloseToast}
+      />
     </>
   );
 };
