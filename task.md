@@ -2,6 +2,8 @@ Complete these tasks:
 - [ ] Redesign the UI
 <br>
 
+- [ ] Hide the search bar if not logging in
+
 - [ ] Add rules for tags in Tag.jsx:
     - [ ] Each tag can only be added once
     - [ ] Can use alphanumeric characters (letters and numbers)
