@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer base {
   html {
-    font-family: "Lora", serif;
+    font-family: 'Poppins', sans-serif;
   }
   body {
     background-color: #e6effd;
@@ -25,9 +25,27 @@
     background-color: #3a4d93;
   }
 
-  .input-box{
-    @apply w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none;
+  .box {
+    @apply relative w-full mx-0 my-[15px];
   }
+  .box input {
+    @apply bg-transparent text-[#b9c4e8] w-full h-full text-sm px-10 py-2.5 border-b-2 border-b-[#463999] border-[none] border-solid focus:border-[#b9c4e8];
+    outline: none;
+  }
+  .box input::placeholder {
+    @apply text-[#463999] focus:text-[#998bec];
+  }
+  .submit{
+    @apply font-semibold bg-[#5966af] w-[54px] h-[54px] flex justify-center items-center  transition-all duration-[0.1s] ease-[ease] cursor-pointer mt-2.5 rounded-[50%] border-2 border-solid border-[#5966af] hover:bg-[#6573c7] hover:border-2 hover:border-solid hover:border-[#6573c7] active:bg-[#6573c7] active:border-2 active:border-solid active:border-[#010733];
+  }
+  .submit img{
+    /* @apply text-[#010733] text-3xl; */
+    width: 30px;
+  }
+
+  /* .input-box{
+    @apply w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none;
+  } */
 
   .btn-primary{
     @apply w-full text-sm bg-primary text-white p-2 rounded my-1;

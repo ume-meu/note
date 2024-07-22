@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Password from "../../components/Input/Password";
 import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
+import pawButton from "../../assets/images/paw-button.svg"
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -58,27 +59,30 @@ const Login = () => {
       <Navbar />
 
       <div className="flex items-center justify-center mt-28">
-        <div className="w-96 border rounded px-7 bg-c2d9ff py-10">
+        <div className="w-96 border rounded px-7 bg-[#120249] py-10">
           <form onSubmit={handleLogin}>
-            <h4 className="text-2xl mb-7">Log In</h4>
+            <h4 className="text-[#b9c4e8] font-bold text-[25px] leading-[35px] uppercase">Log In</h4>
 
-            <input
-              type="text"
-              placeholder="Email"
-              className="input-box"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <div className="box">
+              <input
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
-            <Password
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="box">
+              <Password
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
 
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
 
-            <button type="submit" className="btn-primary">
-              Log In
+            <button type="submit" className="submit">
+              <img src={ pawButton } />
             </button>
 
             <p className="text-sm text-center mt-4">
