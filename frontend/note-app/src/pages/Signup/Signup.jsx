@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Password from "../../components/Input/Password";
 import { validateEmail } from "../../utils/helper";
-import axiosInstance from '../../utils/axiosInstance';
+import axiosInstance from "../../utils/axiosInstance";
+import { MdEmail } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 
 const Signup = () => {
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,10 +16,10 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
-    e.preventDefault();    
+    e.preventDefault();
 
     if (!name) {
-      setError("Please enter your name.")
+      setError("Please enter your name.");
       return;
     }
 
@@ -28,11 +29,11 @@ const Signup = () => {
     }
 
     if (!password) {
-      setError("Please enter the password.")
+      setError("Please enter the password.");
       return;
     }
 
-    setError("")
+    setError("");
 
     // Signup API Call
     try {
@@ -67,29 +68,35 @@ const Signup = () => {
   };
 
   return (
-    <>      
+    <>
       <Navbar />
 
       <div className="flex items-center justify-center mt-28">
-        <div className="w-96 border rounded px-7 bg-c2d9ff py-10">
+        <div className="w-96 border rounded px-7 bg-[#120249] py-10">
           <form onSubmit={handleSignup}>
-            <h4 className="text-2xl mb-7">Sign Up</h4>
+            <h4 className="h4">Sign Up</h4>
 
-            <input
-              type="text"
-              placeholder="Name"
-              className="input-box"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+            <div className="box">
+              <FaUserCircle size={22} className="icon" />
+              <input
+                type="text"
+                placeholder="Name"
+                className="input-box"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
 
-            <input
-              type="text"
-              placeholder="Email"
-              className="input-box"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <div className="box">
+              <MdEmail size={22} className="icon" />
+              <input
+                type="text"
+                placeholder="Email"
+                className="input-box"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
             <Password
               value={password}
@@ -102,18 +109,17 @@ const Signup = () => {
               Sign Up
             </button>
 
-            <p className="text-sm text-center mt-4">
+            <p className="ask">
               Already have an account?{" "}
               <Link to="/login" className="font-medium text-primary underline">
                 Login
               </Link>
             </p>
-
           </form>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

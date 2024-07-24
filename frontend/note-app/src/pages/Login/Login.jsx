@@ -4,7 +4,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import Password from "../../components/Input/Password";
 import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
-import pawButton from "../../assets/images/paw-button.svg"
+import pawButton from "../../assets/images/paw-button.svg";
+import { MdEmail } from "react-icons/md";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -61,9 +62,12 @@ const Login = () => {
       <div className="flex items-center justify-center mt-28">
         <div className="w-96 border rounded px-7 bg-[#120249] py-10">
           <form onSubmit={handleLogin}>
-            <h4 className="text-[#b9c4e8] font-bold text-[25px] leading-[35px] uppercase">Log In</h4>
+            <h4 className="h4">
+              Log In
+            </h4>
 
             <div className="box">
+              <MdEmail size={22} className="icon" />
               <input
                 type="text"
                 placeholder="Email"
@@ -72,20 +76,18 @@ const Login = () => {
               />
             </div>
 
-            <div className="box">
-              <Password
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+            <Password
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
 
             <button type="submit" className="submit">
-              <img src={ pawButton } />
+              <img src={pawButton} />
             </button>
 
-            <p className="text-sm text-center mt-4">
+            <p className="ask">
               Not registered yet?{" "}
               <Link to="/signup" className="font-medium text-primary underline">
                 Create an Account
