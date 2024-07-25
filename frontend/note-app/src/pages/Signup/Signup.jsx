@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Password from "../../components/Input/Password";
 import { validateEmail } from "../../utils/helper";
-import axiosInstance from '../../utils/axiosInstance';
+import axiosInstance from "../../utils/axiosInstance";
+import { IoMdMail } from "react-icons/io";
+import { FaUserCircle, FaPaw } from "react-icons/fa";
 
 const Signup = () => {
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,11 +15,24 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
+  // Function to check if user is authenticated
+  const isAuthenticated = () => {
+    const token = localStorage.getItem("token");
+    return !!token; 
+  };
+
+  // Redirect to dashboard if already logged in
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   const handleSignup = async (e) => {
-    e.preventDefault();    
+    e.preventDefault();
 
     if (!name) {
-      setError("Please enter your name.")
+      setError("Please enter your name.");
       return;
     }
 
@@ -28,11 +42,11 @@ const Signup = () => {
     }
 
     if (!password) {
-      setError("Please enter the password.")
+      setError("Please enter the password.");
       return;
     }
 
-    setError("")
+    setError("");
 
     // Signup API Call
     try {
@@ -50,7 +64,7 @@ const Signup = () => {
 
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
-        navigate("/dashboard");
+        navigate("/dashboard"); // Redirect after successful signup
       }
     } catch (error) {
       // Handle registration error
@@ -67,29 +81,35 @@ const Signup = () => {
   };
 
   return (
-    <>      
+    <>
       <Navbar />
 
-      <div className="flex items-center justify-center mt-28">
-        <div className="w-96 border rounded px-7 bg-c2d9ff py-10">
+      <div className="flex items-center justify-center flex-col h-screen">
+        <div className="form-container">
           <form onSubmit={handleSignup}>
-            <h4 className="text-2xl mb-7">Sign Up</h4>
+            <h4 className="h4">Sign Up</h4>
 
-            <input
-              type="text"
-              placeholder="Name"
-              className="input-box"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+            <div className="box">
+              <FaUserCircle size={22} className="icon" />
+              <input
+                type="text"
+                placeholder="Name"
+                className="input-box"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
 
-            <input
-              type="text"
-              placeholder="Email"
-              className="input-box"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <div className="box">
+              <IoMdMail size={24} className="icon" />
+              <input
+                type="text"
+                placeholder="Email"
+                className="input-box"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
             <Password
               value={password}
@@ -98,22 +118,21 @@ const Signup = () => {
 
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
 
-            <button type="submit" className="btn-primary">
-              Sign Up
+            <button type="submit" className="submit">
+            <FaPaw className="text-[30px]"/>
             </button>
 
-            <p className="text-sm text-center mt-4">
+            <p className="ask">
               Already have an account?{" "}
-              <Link to="/login" className="font-medium text-primary underline">
+              <Link to="/login" className="font-medium text-[#5966af] underline">
                 Login
               </Link>
             </p>
-
           </form>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

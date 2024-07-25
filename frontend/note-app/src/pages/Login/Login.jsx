@@ -1,16 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Password from "../../components/Input/Password";
 import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
+import { IoMdMail } from "react-icons/io";
+import { FaPaw } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-
   const navigate = useNavigate();
+
+  // Function to check if user is authenticated
+  const isAuthenticated = () => {
+    const token = localStorage.getItem("token");
+    return !!token; // Returns true if token exists, otherwise false
+  };
+
+  // Redirect to dashboard if already logged in
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,20 +41,17 @@ const Login = () => {
 
     setError("");
 
-    // Login API Call
     try {
       const response = await axiosInstance.post("/login", {
         email: email,
         password: password,
       });
 
-      // Handle successful login response
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
         navigate("/dashboard");
       }
     } catch (error) {
-      // Handle login error
       if (
         error.response &&
         error.response.data &&
@@ -57,18 +68,20 @@ const Login = () => {
     <>
       <Navbar />
 
-      <div className="flex items-center justify-center mt-28">
-        <div className="w-96 border rounded px-7 bg-c2d9ff py-10">
+      <div className="flex items-center justify-center flex-col h-screen">
+        <div className="form-container">
           <form onSubmit={handleLogin}>
-            <h4 className="text-2xl mb-7">Log In</h4>
+            <h4 className="h4">Log In</h4>
 
-            <input
-              type="text"
-              placeholder="Email"
-              className="input-box"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <div className="box">
+              <IoMdMail size={24} className="icon" />
+              <input
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
             <Password
               value={password}
@@ -77,13 +90,13 @@ const Login = () => {
 
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
 
-            <button type="submit" className="btn-primary">
-              Log In
+            <button type="submit" className="submit">
+              <FaPaw className="text-[30px]" />
             </button>
 
-            <p className="text-sm text-center mt-4">
+            <p className="ask">
               Not registered yet?{" "}
-              <Link to="/signup" className="font-medium text-primary underline">
+              <Link to="/signup" className="font-medium text-[#5966af] underline">
                 Create an Account
               </Link>
             </p>
