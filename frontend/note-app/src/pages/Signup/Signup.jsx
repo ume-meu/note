@@ -4,8 +4,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import Password from "../../components/Input/Password";
 import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
-import { MdEmail } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
+import { FaUserCircle, FaPaw } from "react-icons/fa";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -71,8 +71,8 @@ const Signup = () => {
     <>
       <Navbar />
 
-      <div className="flex items-center justify-center mt-28">
-        <div className="w-96 border rounded px-7 bg-[#120249] py-10">
+      <div className="flex items-center justify-center flex-col h-screen">
+        <div className="form-container">
           <form onSubmit={handleSignup}>
             <h4 className="h4">Sign Up</h4>
 
@@ -88,7 +88,7 @@ const Signup = () => {
             </div>
 
             <div className="box">
-              <MdEmail size={22} className="icon" />
+              <IoMdMail size={24} className="icon" />
               <input
                 type="text"
                 placeholder="Email"
@@ -105,13 +105,13 @@ const Signup = () => {
 
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
 
-            <button type="submit" className="btn-primary">
-              Sign Up
+            <button type="submit" className="submit">
+            <FaPaw className="text-[30px]"/>
             </button>
 
             <p className="ask">
               Already have an account?{" "}
-              <Link to="/login" className="font-medium text-primary underline">
+              <Link to="/login" className="font-medium text-[#5966af] underline">
                 Login
               </Link>
             </p>

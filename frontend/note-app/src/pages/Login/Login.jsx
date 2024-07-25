@@ -4,8 +4,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import Password from "../../components/Input/Password";
 import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
-import pawButton from "../../assets/images/paw-button.svg";
-import { MdEmail } from "react-icons/md";
+import { IoMdMail } from "react-icons/io";
+import { FaPaw } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -59,15 +59,13 @@ const Login = () => {
     <>
       <Navbar />
 
-      <div className="flex items-center justify-center mt-28">
-        <div className="w-96 border rounded px-7 bg-[#120249] py-10">
+      <div className="flex items-center justify-center flex-col h-screen">
+        <div className="form-container">
           <form onSubmit={handleLogin}>
-            <h4 className="h4">
-              Log In
-            </h4>
+            <h4 className="h4">Log In</h4>
 
             <div className="box">
-              <MdEmail size={22} className="icon" />
+              <IoMdMail size={24} className="icon" />
               <input
                 type="text"
                 placeholder="Email"
@@ -84,12 +82,12 @@ const Login = () => {
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
 
             <button type="submit" className="submit">
-              <img src={pawButton} />
+              <FaPaw className="text-[30px]"/>
             </button>
 
             <p className="ask">
               Not registered yet?{" "}
-              <Link to="/signup" className="font-medium text-primary underline">
+              <Link to="/signup" className="font-medium text-[#5966af] underline">
                 Create an Account
               </Link>
             </p>
