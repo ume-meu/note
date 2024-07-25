@@ -13,28 +13,35 @@ const NoteCard = ({
   onPinNote,
 }) => {
   return (
-    <div className="border rounded p-4 bg-white hover:shadow-xl transition-all ease-in-out">
+    <div className="border-[#bac6fd] rounded-xl p-4 bg-[#bac6fd] hover:shadow-xl transition-all ease-in-out">
       <div className="flex items-center justify-between">
-        <div>
-          <h6 className="text-sm font-medium">{title}</h6>
-          <span className="text-xs text-slate-500">{moment(date).format("Do MMM YYYY")}</span>
-        </div>
+        
+        <h6 className="text-[18px] font-medium text-[#463999]">{title?.slice(0, 40)}</h6>
 
-        <MdOutlinePushPin className={`icon-btn ${isPinned ? 'text-primary' : 'text-slate-300'}`} onClick={onPinNote} />
+        <MdOutlinePushPin
+          className={`icon-btn ${isPinned ? "text-primary" : "text-[#e6effd]"}`}
+          onClick={onPinNote}
+        />
       </div>
 
-      <p className="text-xs text-slate-600 mt-2">{content?.slice(0, 60)}</p>
+      <p className="text-[14px] text-slate-600 mt-2">{content?.slice(0, 60)}</p>
+
+      <span className="text-[9px] text-slate-500">
+        {moment(date).format("Do MMM YYYY")}
+      </span>
 
       <div className="flex items-center justify-between">
-        <div className="text-xs text-slate-500">{tags.map((item) => `#${item}`)}</div>
+        <div className="text-xs text-slate-500">
+          {tags.map((item) => `#${item}`)}
+        </div>
 
         <div className="flex items-center gap-2">
           <MdCreate
-            className="icon-btn hover:text-green-600"
+            className="icon-btn text-[#e6effd] hover:text-green-600"
             onClick={onEdit}
           />
           <MdDelete
-            className="icon-btn hover:text-red-500"
+            className="icon-btn text-[#e6effd] hover:text-red-500"
             onClick={onDelete}
           />
         </div>

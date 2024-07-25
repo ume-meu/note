@@ -1,5 +1,5 @@
 // Navbar.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ProfileInfo from "../Cards/ProfileInfo";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
@@ -8,6 +8,9 @@ const Navbar = ({ userInfo, onSearchNote, handleClearSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const [showSearchBar, setShowSearchBar] = useState(false);
+
+  // Debounce timer ref
+  const debounceTimer = useRef(null);
 
   useEffect(() => {
     // Update showSearchBar based on whether userInfo exists
@@ -19,15 +22,21 @@ const Navbar = ({ userInfo, onSearchNote, handleClearSearch }) => {
     navigate("/login");
   };
 
-  const handleSearch = () => {
-    if (searchQuery) {
-      onSearchNote(searchQuery);
-    }
-  };
-
   const onClearSearch = () => {
     setSearchQuery("");
     handleClearSearch();
+  };
+
+  const handleSearch = (query) => {
+    // Clear any previous debounce timer
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
+
+    // Set a new debounce timer
+    debounceTimer.current = setTimeout(() => {
+      onSearchNote(query); // Trigger search after a delay
+    }, 300); // Adjust the delay (in milliseconds) as needed
   };
 
   return (
@@ -37,10 +46,11 @@ const Navbar = ({ userInfo, onSearchNote, handleClearSearch }) => {
       {showSearchBar && (
         <SearchBar
           value={searchQuery}
-          onChange={({ target }) => {
-            setSearchQuery(target.value);
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            handleSearch(e.target.value); // Trigger debounced search
           }}
-          handleSearch={handleSearch}
+          onSearch={handleSearch} // Pass handleSearch to SearchBar
           onClearSearch={onClearSearch}
         />
       )}

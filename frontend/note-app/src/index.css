@@ -16,15 +16,6 @@
 }
 
 @layer components {
-  .text-1e2749 {
-    color: #1e2749;
-  }
-  .bg-c2d9ff {
-    background-color: #c2d9ff;
-  }
-  .bg-3a4d93 {
-    background-color: #3a4d93;
-  }
 
   .form-container {
     @apply items-center max-w-full py-8 mt-[-50px] flex justify-center bg-[#120249] shadow-[0px_2px_3px_#190254,0px_-2px_3px_#190254,2px_0px_3px_#190254,-2px_0px_3px_#190254] relative min-h-[500px] rounded-[20px];
@@ -66,7 +57,7 @@
   }
 
   .btn-primary {
-    @apply w-full text-sm bg-primary text-white p-2 rounded my-1;
+    @apply w-full text-sm bg-[#5966af] hover:bg-[#3a468f] text-white p-2 rounded my-1;
   }
   .btn-primary:hover {
     text-shadow: 600;

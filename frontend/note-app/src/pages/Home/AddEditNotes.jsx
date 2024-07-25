@@ -92,22 +92,22 @@ const AddEditNotes = ({ noteData, type, getAllNotes, onclose, showToastMessage }
       </button>
 
       <div className="flex flex-col gap-2">
-        <label className="input-label">TITLE</label>
+        <label className="input-label text-[#463999] text-[16px] font-bold">TITLE</label>
         <input
           type="text"
-          className="text-2xl text-slate-90 outline-none"
-          placeholder="Sleeping"
+          className="text-2xl text-slate-400 bg-slate-50 outline-none"
+          placeholder="TITLE here"
           value={title}
           onChange={({ target }) => setTitle(target.value)}
         />
       </div>
 
       <div className="flex flex-col gap-2 mt-4">
-        <label className="input-label">CONTENT</label>
+        <label className="input-label font-bold">CONTENT</label>
         <textarea
           type="text"
-          className="text-sm text0slate-950 outline-none bg-slate-50 p-2 rounded"
-          placeholder="Content"
+          className="text-sm text-slate-400 outline-none bg-slate-50 p-2 rounded"
+          placeholder="CONTENT here"
           rows={10}
           value={content}
           onChange={({ target }) => setContent(target.value)}
@@ -115,7 +115,7 @@ const AddEditNotes = ({ noteData, type, getAllNotes, onclose, showToastMessage }
       </div>
 
       <div className="mt-3">
-        <label className="input-label">TAGS</label>
+        <label className="input-label font-bold">TAGS</label>
         <Tag tags={tags} setTags={setTags} />
       </div>
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import Navbar from "../../components/Navbar/Navbar";
 import NoteCard from "../../components/Cards/NoteCard";
-import { MdAdd } from "react-icons/md";
+import { FaPaw } from "react-icons/fa";
 import AddEditNotes from "./AddEditNotes";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
@@ -70,7 +70,7 @@ const Home = () => {
       const response = await axiosInstance.get("/get-all-notes");
 
       if (response.data && response.data.notes) {
-        setAllNotes(response.data.notes);
+        setAllNotes(sortNotes(response.data.notes)); // Sort notes when fetched
       }
     } catch (error) {
       console.log("An unexpected error occurred. Please try again.");
@@ -121,24 +121,52 @@ const Home = () => {
     getAllNotes();
   };
 
+  // Function to sort notes
+  const sortNotes = (notes) => {
+    return notes.sort((a, b) => {
+      // Prioritize pinned notes
+      if (a.isPinned && !b.isPinned) {
+        return -1;
+      } else if (!a.isPinned && b.isPinned) {
+        return 1;
+      } else {
+        // Sort by date if both are pinned or not pinned
+        return new Date(b.createdOn) - new Date(a.createdOn);
+      }
+    });
+  };
+
   // Pin notes
   const pinNote = async (noteData) => {
-    
     const noteId = noteData._id;
 
     try {
-      const response = await axiosInstance.put("/update-note-pinned/" + noteId, {
-        "isPinned": !noteId.isPinned,
-      });
+      const response = await axiosInstance.put(
+        "/update-note-pinned/" + noteId,
+        {
+          isPinned: !noteData.isPinned,
+        }
+      );
 
       if (response.data && response.data.note) {
+        // Update the note in the allNotes array
+        setAllNotes((prevNotes) => {
+          return sortNotes(
+            prevNotes.map((note) => {
+              if (note._id === noteId) {
+                return { ...note, isPinned: !note.isPinned }; // Toggle isPinned
+              }
+              return note;
+            })
+          );
+        });
+
         showToastMessage("Note Updated Successfully");
-        getAllNotes();
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     getAllNotes();
@@ -156,7 +184,7 @@ const Home = () => {
 
       <div className="container mx-auto">
         {allNotes.length > 0 ? (
-          <div className="grid grid-cols-4 gap-4 mt-8 px-5">
+          <div className="grid grid-cols-3 gap-5 mt-8 px-5">
             {allNotes.map((item) => (
               <NoteCard
                 key={item._id}
@@ -177,19 +205,19 @@ const Home = () => {
             message={
               isSearch
                 ? `Oops! No notes found matching your search.`
-                : `Start creating your first note!`
+                : `Start creating your first note by clicking the 'Paw' button on screen to create new ones.`
             }
           />
         )}
       </div>
 
       <button
-        className="w-16 h-16 flex items-center justify-center rounded-2xl bg-primary hover:bg-blue-600 absolute right-10 bottom-10"
+        className="w-16 h-16 flex items-center justify-center rounded-[50%] bg-[#5966af] hover:bg-[#3a468f] absolute right-10 bottom-10"
         onClick={() => {
           setOpenAddEditModal({ isShown: true, type: "add", data: null });
         }}
       >
-        <MdAdd className="text-[32px] text-white" />
+        <FaPaw className="text-[32px] text-white" />
       </button>
 
       <Modal
@@ -197,7 +225,7 @@ const Home = () => {
         onRequestClose={() => {}}
         style={{
           overlay: {
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            backgroundColor: "rgba(6, 1, 40, 0.8)",
           },
         }}
         contentLabel=""
