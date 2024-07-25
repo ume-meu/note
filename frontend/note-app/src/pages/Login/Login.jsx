@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Password from "../../components/Input/Password";
@@ -11,8 +11,20 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-
   const navigate = useNavigate();
+
+  // Function to check if user is authenticated
+  const isAuthenticated = () => {
+    const token = localStorage.getItem("token");
+    return !!token; // Returns true if token exists, otherwise false
+  };
+
+  // Redirect to dashboard if already logged in
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,20 +41,17 @@ const Login = () => {
 
     setError("");
 
-    // Login API Call
     try {
       const response = await axiosInstance.post("/login", {
         email: email,
         password: password,
       });
 
-      // Handle successful login response
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
         navigate("/dashboard");
       }
     } catch (error) {
-      // Handle login error
       if (
         error.response &&
         error.response.data &&
@@ -82,7 +91,7 @@ const Login = () => {
             {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
 
             <button type="submit" className="submit">
-              <FaPaw className="text-[30px]"/>
+              <FaPaw className="text-[30px]" />
             </button>
 
             <p className="ask">

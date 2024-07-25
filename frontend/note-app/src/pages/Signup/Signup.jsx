@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Password from "../../components/Input/Password";
@@ -14,6 +14,19 @@ const Signup = () => {
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
+
+  // Function to check if user is authenticated
+  const isAuthenticated = () => {
+    const token = localStorage.getItem("token");
+    return !!token; 
+  };
+
+  // Redirect to dashboard if already logged in
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -51,7 +64,7 @@ const Signup = () => {
 
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
-        navigate("/dashboard");
+        navigate("/dashboard"); // Redirect after successful signup
       }
     } catch (error) {
       // Handle registration error
