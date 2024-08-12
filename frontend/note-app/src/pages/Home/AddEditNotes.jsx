@@ -83,19 +83,19 @@ const AddEditNotes = ({ noteData, type, getAllNotes, onclose, showToastMessage }
   };
 
   return (
-    <div className="relative">
+    <div className="relative bg-transparent">
       <button
-        className="w-10 h-10 rounded-full flex items-center justify-center absolute -top-3 -right-3 hover:bg-slate-500"
+        className="w-10 h-10 rounded-full flex items-center justify-center absolute -top-3 -right-3 hover:bg-transparent hover:text-[#e6effd]"
         onClick={onclose}
       >
-        <MdClose className="text-xl text-slate-400" />
+        <MdClose className="text-xl text-[#120249] hover:text-[#e6effd]" />
       </button>
 
       <div className="flex flex-col gap-2">
-        <label className="input-label text-[#463999] text-[16px] font-bold">TITLE</label>
+        <label className="input-label text-[#332970] text-[16px] font-bold">TITLE</label>
         <input
           type="text"
-          className="text-2xl text-slate-400 bg-slate-50 outline-none"
+          className="text-xl text-[#c8d3e7] placeholder:text-[#c8d3e7] bg-[#6d71a1] outline-none p-2 rounded-lg cursor-pointer"
           placeholder="TITLE here"
           value={title}
           onChange={({ target }) => setTitle(target.value)}
@@ -103,10 +103,10 @@ const AddEditNotes = ({ noteData, type, getAllNotes, onclose, showToastMessage }
       </div>
 
       <div className="flex flex-col gap-2 mt-4">
-        <label className="input-label font-bold">CONTENT</label>
+        <label className="input-label font-bold text-[#e6effd]">CONTENT</label>
         <textarea
           type="text"
-          className="text-sm text-slate-400 outline-none bg-slate-50 p-2 rounded"
+          className="text-sm text-[#c8d3e7] placeholder:text-[#c8d3e7] outline-none bg-[#6d71a1] p-2 rounded-lg cursor-pointer"
           placeholder="CONTENT here"
           rows={10}
           value={content}
@@ -115,7 +115,7 @@ const AddEditNotes = ({ noteData, type, getAllNotes, onclose, showToastMessage }
       </div>
 
       <div className="mt-3">
-        <label className="input-label font-bold">TAGS</label>
+        <label className="input-label font-bold text-[#e6effd]">TAGS</label>
         <Tag tags={tags} setTags={setTags} />
       </div>
 

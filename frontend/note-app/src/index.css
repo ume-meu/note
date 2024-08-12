@@ -9,7 +9,7 @@
     font-family: "Poppins", sans-serif;
   }
   body {
-    background-color: #e6effd;
+    background-color: #666a98;
     overflow-x: hidden;
     overflow-y: hidden;
   }
@@ -18,7 +18,7 @@
 @layer components {
 
   .form-container {
-    @apply items-center max-w-full py-8 mt-[-50px] flex justify-center bg-[#120249] shadow-[0px_2px_3px_#190254,0px_-2px_3px_#190254,2px_0px_3px_#190254,-2px_0px_3px_#190254] relative min-h-[500px] rounded-[20px];
+    @apply items-center max-w-full py-8 mt-[-100px] flex justify-center bg-[#120249] relative min-h-[480px] rounded-[20px];
   }
   .h4 {
     @apply text-[#b9c4e8] font-bold text-[30px] leading-[35px] uppercase py-2;
@@ -57,11 +57,11 @@
   }
 
   .btn-primary {
-    @apply w-full text-sm bg-[#5966af] hover:bg-[#3a468f] text-white p-2 rounded my-1;
+    @apply w-full text-sm bg-[#3e4882] hover:bg-[#252d63] text-white p-2 rounded my-1;
   }
   .btn-primary:hover {
     text-shadow: 600;
-    background-color: #3a4d93;
+    background-color: #252d63;
   }
 
   .icon-btn {
@@ -74,4 +74,18 @@
   .input-label {
     @apply text-xs text-slate-400;
   }
+
+  ::-webkit-scrollbar {
+    width: 10px; 
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #3a4d93; 
+    border-radius: 10px; 
+  }
+  
 }
