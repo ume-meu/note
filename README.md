@@ -13,6 +13,7 @@
   - [User Authentication](#user-authentication)
   - [Notes Management](#notes-management)
   - [Search and Tagging](#search-and-tagging)
+- [Customizations and Enhancements](#customizations)
 - [Demo](#demo)
 - [Screenshots](#screenshots)
 - [Reference](#reference)
@@ -85,12 +86,14 @@ The project is divided into two main folders:
 1. **Run the Frontend:**
 
    ```bash
+   cd frontend/note-app
    npm run dev
    ```
 
 2. **Run the Backend (Server):**
 
    ```bash
+   cd backend
    npm start
    ```
 
@@ -112,17 +115,31 @@ The project is divided into two main folders:
 - **Search Bar:** The search bar allows users to quickly find notes by keywords.
 - **Tagging:** Notes can include tags for better organization and retrieval.
 
+<h2 id="customizations">🎨 Customizations and Enhancements</h2>
+
+In developing the **Note** app, several custom features and design choices were implemented to improve user experience and differentiate from the referenced video:
+
+- **Custom Colors and Design:** The app features a unique color scheme and design elements tailored to provide a modern and cohesive user interface, ensuring a visually appealing experience.
+
+- **Hidden Search Bar:** The search bar is only visible and accessible after the user successfully signs up or logs in, adding a layer of security and a clean interface for unauthorized users.
+
+- **Instant Search Feature:** Unlike the referenced video, where users must press "Enter" to search, the **Note** app performs searches in real-time. As the user types in the search bar, results are dynamically updated with each character entered, providing a faster and more responsive search experience.
+
 <h2 id="demo">📸 Demo</h2>
 
-_Add a link to your live demo here._
+<div align ="center"><img src="frontend/note-app/src/assets/readme/demo.gif" alt="Demo"/></div>
 
 <h2 id="screenshots">📷 Screenshots</h2>
 
-_Include some screenshots of your app here._
+### Login/Signup UI
+<div align ="center"><img src="frontend/note-app/src/assets/readme/login_signup.png" alt="Login/Signup UI"/></div>
+
+### Homepage
+<div align ="center"><img src="frontend/note-app/src/assets/readme/home.png" alt="Homepage"/></div>
 
 <h2 id="reference">📚 Reference</h2>
 
-- [Build a Full Stack Notes App using MERN | MongoDB, Express, React JS, Node JS](https://www.youtube.com/watch?v=Rgvec9UA2_I)
+[Build a Full Stack Notes App using MERN | MongoDB, Express, React JS, Node JS](https://www.youtube.com/watch?v=Rgvec9UA2_I)
 
 <h2 id="contributing">🤝 Contributing</h2>
 
@@ -134,4 +151,4 @@ This project is licensed under [MIT License](https://github.com/ume-meu/note/blo
 
 <h2 id="contact">📧 Contact</h2>
 
-For any questions or suggestions, please contact [Your Email/Contact Info].
+For any questions or suggestions, please contact ....
