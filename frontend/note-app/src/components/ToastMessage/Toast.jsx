@@ -20,7 +20,7 @@ const Toast = ({ isShown, message, type, onClose }) => {
       }`}
     >
       <div
-        className={`min-w-52 bg-white border shadow-2xl rounded-md after:w-[5px] after:h-full ${
+        className={`min-w-52 bg-[#120249] border shadow-2xl rounded-md after:w-[5px] after:h-full ${
           type === "delete" ? "after:bg-red-500" : "after:bg-green-500"
         } after:absolute after:left-0 after:top-0 after:rounded-l-lg`}
       >
@@ -36,7 +36,7 @@ const Toast = ({ isShown, message, type, onClose }) => {
               <LuCheck className="text-xl text-green-500" />
             )}
           </div>
-          <p className="text-sm text-slate-800">{message}</p>
+          <p className="text-sm text-white">{message}</p>
         </div>
       </div>
     </div>
